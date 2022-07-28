@@ -3,39 +3,39 @@
 namespace WebApiApp.Controllers
 {
     [ApiController]
-    [Route("api/tickets")]
-    public class TicketsController : ControllerBase
+    [Route("api/projects")]
+    public class ProjectsController : ControllerBase
     {
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok("Reading all the tickets.");
+            return Ok("Reading all the projects.");
         }
 
         [HttpGet]
         [Route("{id}")]
         public IActionResult GetById(int id)
         {
-            return Ok($"Reading ticket: #{id}");
+            return Ok($"Reading project: #{id}");
         }
 
         [HttpPost]
         public IActionResult Create()
         {
-            return Ok("Creating a ticket.");
+            return Ok("Creating a project.");
         }
 
         [HttpPut]
         public IActionResult Put()
         {
-            return Ok("Updating a ticket.");
+            return Ok("Updating a project.");
         }
 
         [HttpDelete]
         [Route("{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok($"Deleting ticket: #{id}");
+            return Ok($"Deleting project: #{id}");
         }
     }
 }
