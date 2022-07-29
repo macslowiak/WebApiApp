@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApiApp.Models;
 
 namespace WebApiApp.Controllers
 {
@@ -20,15 +21,15 @@ namespace WebApiApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create()
+        public IActionResult Create([FromBody] Ticket ticket)
         {
-            return Ok("Creating a ticket.");
+            return Ok(ticket);
         }
 
         [HttpPut]
-        public IActionResult Put()
+        public IActionResult Put([FromBody] Ticket ticket)
         {
-            return Ok("Updating a ticket.");
+            return Ok(ticket);
         }
 
         [HttpDelete]
