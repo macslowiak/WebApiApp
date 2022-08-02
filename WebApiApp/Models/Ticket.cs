@@ -21,5 +21,6 @@ namespace WebApiApp.Models
         [Ticket_EnsureDueDataForTicektOwner]
         [Ticket_IsDueDateInFuture]
         public DateTime? DueDate { get; set; }
+        public DateTime? EnteredDate { get; set; }
     }
 }
