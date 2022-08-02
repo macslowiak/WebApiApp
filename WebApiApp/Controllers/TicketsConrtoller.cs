@@ -29,7 +29,7 @@ namespace WebApiApp.Controllers
 
         [HttpPost]
         [Route("/api/v2/tickets")]
-        [Ticket_EnsureEnteredDate]
+        [Ticket_ValidateDates]
         public IActionResult CreateV2([FromBody] Ticket ticket)
         {
             return Ok(ticket);
