@@ -3,18 +3,18 @@ using WebApiApp.Models;
 
 namespace WebApiApp.ModelValidations
 {
-    public class Ticket_EnsureDueDataForTicektOwner : ValidationAttribute
+    public class Ticket_IsDueDateInFuture : ValidationAttribute
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var ticket = validationContext.ObjectInstance as Ticket;
 
-            if (ticket != null && !string.IsNullOrWhiteSpace(ticket.Owner))
+            if (ticket!=null && ticket.DueDate.HasValue && ticket.DueDate.Value < DateTime.Now)
             {
-                if (!ticket.DueDate.HasValue )
+                if (!ticket.TicketId.HasValue)
                 {
-                    return new ValidationResult("Due date is required when the ticket has an owner");
-                } 
+                    return new ValidationResult("Date must be a future date");
+                }
             }
             return ValidationResult.Success;
         }

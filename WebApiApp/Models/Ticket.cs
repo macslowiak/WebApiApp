@@ -19,6 +19,7 @@ namespace WebApiApp.Models
         public string? Owner { get; set; }
 
         [Ticket_EnsureDueDataForTicektOwner]
+        [Ticket_IsDueDateInFuture]
         public DateTime? DueDate { get; set; }
     }
 }
