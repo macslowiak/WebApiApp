@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiApp", "WebApiApp\WebA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{701FB2EC-F244-4B19-97DE-93685C1FFB0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore.EF", "DataStore.EF\DataStore.EF.csproj", "{5828F15E-C6C0-448A-A287-C84D4591950F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{701FB2EC-F244-4B19-97DE-93685C1FFB0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{701FB2EC-F244-4B19-97DE-93685C1FFB0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{701FB2EC-F244-4B19-97DE-93685C1FFB0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5828F15E-C6C0-448A-A287-C84D4591950F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5828F15E-C6C0-448A-A287-C84D4591950F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5828F15E-C6C0-448A-A287-C84D4591950F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5828F15E-C6C0-448A-A287-C84D4591950F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
