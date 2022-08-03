@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebApiApp.Filters;
-using WebApiApp.Models;
+using Core.Models;
 
 namespace WebApiApp.Controllers
 {
@@ -23,14 +22,6 @@ namespace WebApiApp.Controllers
 
         [HttpPost]
         public IActionResult CreateV1([FromBody] Ticket ticket)
-        {
-            return Ok(ticket);
-        }
-
-        [HttpPost]
-        [Route("/api/v2/tickets")]
-        [Ticket_ValidateDates]
-        public IActionResult CreateV2([FromBody] Ticket ticket)
         {
             return Ok(ticket);
         }
