@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataStore.EF;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApiApp.Controllers
 {
@@ -6,34 +8,44 @@ namespace WebApiApp.Controllers
     [Route("api/projects")]
     public class ProjectsController : ControllerBase
     {
+        private readonly BugsContext db;
+
+        public ProjectsController(BugsContext db)
+        {
+            this.db = db;
+        }
+
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok("Reading all the projects.");
+            return Ok(db.Projects.ToList());
         }
 
         [HttpGet]
         [Route("{id}")]
         public IActionResult GetById(int id)
         {
-            return Ok($"Reading project: #{id}");
+            var projects = db.Projects.Find(id);
+
+
+            if (projects == null)
+            {
+                return NotFound();
+            }
+            return Ok(projects);
         }
 
-        /// <summary>
-        /// api/projects/{pid}/tickets/{tid}
-        /// </summary>
-        /// <param name="projectId"></param>
-        /// <param name="ticketId"></param>
-        /// <returns></returns>
+
         [HttpGet]
         [Route("{projectId}/tickets")]
-        public IActionResult GetProjectTicket(int projectId, [FromQuery] int ticketId)
+        public IActionResult GetProjectTickets(int projectId)
         {
-            if (ticketId == 0)
+            var tickets = db.Tickets.Where(project => project.ProjectId == projectId).ToList();
+            if (tickets == null || tickets.Count <=0)
             {
-                return Ok($"Reading all the tickets belong to project #{projectId}");
+                return NotFound();
             }
-            return Ok($"Reading project: #{projectId} and ticket #{ticketId}");
+            return Ok(tickets);
         }
 
 

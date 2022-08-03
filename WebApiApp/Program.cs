@@ -9,9 +9,9 @@ if (builder.Environment.IsDevelopment())
     builder.Services.AddDbContext<BugsContext>(options =>
     {
         options.UseInMemoryDatabase("Bugs");
+
     });
 }
-
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
