@@ -1,4 +1,5 @@
-﻿using DataStore.EF;
+﻿using Core.Models;
+using DataStore.EF;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -41,7 +42,7 @@ namespace WebApiApp.Controllers
         public IActionResult GetProjectTickets(int projectId)
         {
             var tickets = db.Tickets.Where(project => project.ProjectId == projectId).ToList();
-            if (tickets == null || tickets.Count <=0)
+            if (tickets == null || tickets.Count <= 0)
             {
                 return NotFound();
             }
@@ -50,22 +51,53 @@ namespace WebApiApp.Controllers
 
 
         [HttpPost]
-        public IActionResult Create()
+        public IActionResult Create([FromBody] Project project)
         {
-            return Ok("Creating a project.");
+            db.Projects.Add(project);
+            db.SaveChanges();
+
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = project.ProjectId },
+                project
+                );
         }
 
-        [HttpPut]
-        public IActionResult Put()
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Project project)
         {
-            return Ok("Updating a project.");
+            if (id != project.ProjectId) return BadRequest();
+
+            db.Entry(project).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch
+            {
+                if (db.Projects.Find(id) == null)
+                {
+                    return NotFound();
+                }
+                throw;
+            }
+
+            return NoContent();
         }
 
         [HttpDelete]
         [Route("{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok($"Deleting project: #{id}");
+            var project = db.Projects.Find(id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+            db.Projects.Remove(project);
+            db.SaveChanges();
+
+            return Ok(project);
         }
     }
 }
